@@ -1,41 +1,46 @@
 package basicProjects;
 import java.util.Scanner;
 public class UserAccountIdentification {
+	/*Account variables*/
 	static Scanner input = new Scanner(System.in);
-	static String numberSelected;
+	static int numberSelected, numberSelectedForExit;
 
-	static String signUpUsername;
-	static String signUpPassword;
-	static String typedLoginUsername;
-	static String typedLoginPassword;
+	static String signUpUsername, signUpPassword;
+	static String typedLoginUsername, typedLoginPassword;
 	
 	public static void main(String[]args) {
 		System.out.println("Welcome to Youtuve!");
 		System.out.println("Please select a number!");
-		System.out.println("Login: 1");
-		System.out.println("Signup: 2");
-		UserAccountIdentification.numberSelected = input.nextLine();
+		System.out.println("Signup: 1");
+		System.out.println("Login: 2");
+		System.out.println("Close Program: 0");
+		numberSelected = input.nextInt();
 		System.out.println("___________________");
 		transporter();
 	}
+	/*Login Interface */
 	public static void logIn() {
-		System.out.println("Enter username: ");
-		UserAccountIdentification.typedLoginUsername = input.nextLine();
-		System.out.println("Enter password: ");
-		UserAccountIdentification.typedLoginPassword = input.nextLine();
+		System.out.println("Log In!");
+		System.out.println("Enter Username: ");
+		typedLoginUsername = input.next();
+		System.out.println("Enter Password: ");
+		typedLoginPassword = input.next();
 		System.out.println("___________________");
 		accountIdentificator();
 	}
+	/*Signup Interface */
 	public static void signUp() {
-		System.out.println("Enter username: ");
-		UserAccountIdentification.signUpUsername = input.nextLine();
-		System.out.println("Enter password: ");
-		UserAccountIdentification.signUpPassword = input.nextLine();
+		System.out.println("SIGN UP!");
+		System.out.println("Enter Username: ");
+		signUpUsername = input.next();
+		System.out.println("Enter Password: ");
+		signUpPassword = input.next();
 		System.out.println("");
 		System.out.println("You have successfuly signed up!");
-		System.out.println("--------------------------------");
-		UserAccountIdentification.main(null);
+		System.out.println("-------------------------------");
+		main(null);
 	}
+	/*Fuction to test if the password&username matched the signed password&username*/ 
 	public static void accountIdentificator() {
 		if(signUpPassword.equals(typedLoginPassword) && signUpUsername.equals(typedLoginUsername)){
 				System.out.println("Welcome " + signUpUsername);
@@ -43,21 +48,47 @@ public class UserAccountIdentification {
 			wrongInput();
 		}
 	}
+	/*This transports the user to the choosen key on whether the next page will go to login or signup */
 	public static void transporter() {
-		if(numberSelected.equals("1")) {
-				logIn();
-		}else if(numberSelected.equals("2")){
+		switch(numberSelected){
+			case 1: 
 				signUp();
-		} else {
-				System.out.println("Wrong input!");
+				break;
+			case 2:
+				logIn();
+				break;
+			case 0: 
+				closeProgram();
+				break;
+		} if(numberSelected != 1 && numberSelected != 2 && numberSelected != 0){
+			System.out.println("Wrong input!");
 				System.out.println("Try Again!");
 				System.out.println("___________________");
-				UserAccountIdentification.main(null);
+				main(null);
 		}
 	}
+	/*THIS PART SHOWS THE MESSAGE OF THE SYSTEM REGARDING THE USERS INPUT OR INFORMATION THAT THEY TYPED */
 	public static void wrongInput(){
 			System.out.println("Wrong password or username");
 			System.out.println("___________________");
 			logIn();
+	}
+	/*This ask the user wether to exit the program */
+	public static void closeProgram(){
+		System.out.println("Would you like to close the program?");
+		System.out.println("Yes: 1");
+		System.out.println("No: 2");
+		numberSelectedForExit = input.nextInt();
+		if(numberSelected == 1){
+			System.out.println("System Closed");
+			System.out.println("");
+			System.exit(0);
+		} 
+		else if(numberSelectedForExit == 2){
+				main(null);
+		} else{
+				System.out.println("Wrong Input");
+				closeProgram();
+		}
 	}
 }
