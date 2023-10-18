@@ -1,4 +1,4 @@
-package basicProjects;
+package projects;
 import java.util.Scanner;
 public class UserAccountIdentification {
 	/*Account variables*/
@@ -50,22 +50,19 @@ public class UserAccountIdentification {
 	}
 	/*This transports the user to the choosen key on whether the next page will go to login or signup */
 	public static void transporter() {
-		switch(numberSelected){
-			case 1: 
-				signUp();
-				break;
-			case 2:
-				logIn();
-				break;
-			case 0: 
-				closeProgram();
-				break;
-		} if(numberSelected != 1 && numberSelected != 2 && numberSelected != 0){
-			System.out.println("Wrong input!");
-				System.out.println("Try Again!");
-				System.out.println("___________________");
-				main(null);
-		}
+				if(numberSelected = 1){
+					signUp();
+				}
+				else if(numberSelected = 2) {
+					logIn();
+				} 
+				else if(numberSelected = 0){
+					closeProgram();
+				}
+				else{
+					wrongInputMain();
+				}
+		 
 	}
 	/*THIS PART SHOWS THE MESSAGE OF THE SYSTEM REGARDING THE USERS INPUT OR INFORMATION THAT THEY TYPED */
 	public static void wrongInput(){
@@ -73,6 +70,20 @@ public class UserAccountIdentification {
 			System.out.println("___________________");
 			logIn();
 	}
+	public static void wrongInputMain(){
+		System.out.println("Wrong Input");
+		System.out.println("Try Again: 1");
+		System.out.println("Exit: 0");
+		numberSelectedForExit = input.nextInt();
+		if(numberSelected = 1) {
+			main(null);
+		} else if(numberSelected = 0){
+			closeProgram();
+		} else{
+			wrongInputMain();
+		}
+		
+}
 	/*This ask the user wether to exit the program */
 	public static void closeProgram(){
 		System.out.println("Would you like to close the program?");
