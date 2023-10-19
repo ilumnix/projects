@@ -6,6 +6,9 @@ class student:
     self.age = age
     print("Hi im " + name.lower() + " im age" , age , " year old")
 
+i = 3
+if i < 10:
+  print("Bagsak Ako")
 
 will = student
 
